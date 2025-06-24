@@ -1,4 +1,4 @@
-import Deployment from "../models/deployment.models.js"
+import {Deployment} from "../models/deployment.models.js"
 
 const handleDeployment = async(req,res) => {
     const deployments = await Deployment.find().populate("projectId");

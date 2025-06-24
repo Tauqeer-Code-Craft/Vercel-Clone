@@ -1,0 +1,18 @@
+FROM node:20-slim
+
+RUN apt-get update 
+
+#Installing git 
+RUN apt-get install git -y && rm -rf /var/lib/apt/lists/* 
+
+#Setting the working DIR inside the container
+WORKDIR /home/app
+
+#Copying from this to inside the container
+COPY main.sh main.sh
+COPY script.js script.js
+
+RUN chmod +x main.sh
+
+#Default running when the container is spinned
+ENTRYPOINT [ "/home/app/main.sh" ]

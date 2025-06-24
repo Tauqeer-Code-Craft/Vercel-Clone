@@ -1,4 +1,4 @@
-import Project from "../models/project.models.js"
+import {Project} from "../models/project.models.js"
 
 const handleProjects = async(req,res) => {
     const projects = await Project.find();

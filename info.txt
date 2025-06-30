@@ -1,0 +1,40 @@
+BUILD SERVER
+//3 routes of container 
+/api/createNode     //create a container of node slim 
+/api/createPython   //create a container of python
+/api/createjava     //create a container of java 
+
+//running route 
+/api/runCont
+/api/pauseCont
+/api/delete
+
+BACKEND
+//Authentication
+/api/createUser
+/api/verifyCred
+
+FRONTEND
+
+
+
+//Time s1 : 11.30 started 2.15 stopped 
+//
+
+docker run --rm -v C:/.../tmp/build-123:/app -w /app secure-node-runner bash -c "git clone docker run --rm -v C:/.../tmp/build-123:/app -w /app secure-node-runner bash -c "git clone <repo> . && cd frontend && npm install && npm run build"
+ . && cd frontend && npm install && npm run build"
+
+
+frontend // 
+backend service , next 
+aws lambda 
+
+queue 
+container 
+
+react ready - 
+path  ready ready - r2 10 gb bucket reverse proxy nginx port --
+
+/arshad
+
+express serverless

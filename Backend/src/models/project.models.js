@@ -26,7 +26,7 @@ const projectSchema = new mongoose.Schema({
     },
     status:{
         type: String,
-        enums: ["IDLE","BUILDING","DEPLOYED","FAILED"],
+        enum: ["IDLE","BUILDING","DEPLOYED","FAILED"],
         default: "IDLE",
     },
 

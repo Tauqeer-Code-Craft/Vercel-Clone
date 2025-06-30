@@ -6,6 +6,8 @@ import connectDB from "./connect.db.js";
 //Routes
 import projectRoutes from "./routes/project.routes.js";
 import deploymentRoutes from "./routes/deployment.routes.js";
+import testBuildRoutes from "./routes/testBuild.Routes.js";
+import webhookRoutes from "./routes/webhook.routes.js"
 
 const app = express();
 dotenv.config();
@@ -17,6 +19,8 @@ app.use(express.json());
 
 app.use('/api/projects',projectRoutes);
 app.use('/api/deployments',deploymentRoutes);
+app.use('/api/webhooks',webhookRoutes)
+app.use('/api/',testBuildRoutes)
 
 connectDB();
 

@@ -11,4 +11,6 @@ router.post('/:id/stop',containerController.handleContainerStop)
 
 router.delete('/:id',containerController.handleContainerDelete)
 
+router.post('/deploy', containerController.handleDeployFromGitHub)
+
 export default router;

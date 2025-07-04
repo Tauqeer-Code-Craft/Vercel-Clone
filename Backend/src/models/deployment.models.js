@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const deploymentSchema = new mongoose.Schema({
+const deployment = new mongoose.Schema({
     projectId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Project",
@@ -8,7 +8,7 @@ const deploymentSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ["IDLE","BUILDING","DEPLOYED","FAILED","SUCCESS"],
+        enums: ["IDLE","BUILDING","DEPLOYED","FAILED"],
         default: "IDLE",
     },
     logs:{
@@ -16,7 +16,7 @@ const deploymentSchema = new mongoose.Schema({
     },
     containerId:{
         type:String,
-        required: false, //false only for testing purpose
+        required: true,
     },
     buildTime:{
         type: Number,
@@ -25,4 +25,4 @@ const deploymentSchema = new mongoose.Schema({
 {timestamps:true}
 );
 
-export const Deployment = mongoose.model("Deployment",deploymentSchema);
+export const Deployment = mongoose.model("Deployment",deployment);

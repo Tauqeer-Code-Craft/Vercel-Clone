@@ -56,4 +56,49 @@ const handleContainerDelete = async (req,res) => {
 
 }
 
-export default {handleContainer, handleContainerStart, handleContainerStop, handleContainerDelete}
+
+export const handleDeployFromGitHub = async( req, res) => {
+    const { repoUrl, username } = req.body;
+
+    if (!repoUrl || !username) {
+        return res.status(400).json({ error: "Missing repoUrl or username" });
+    }
+
+    const containerName = `deploy-${username}-${Date.now()}`;
+
+    try{
+        const container = await docker.createContainer({
+            Image: "build-server",
+            name: containerName,
+            Env: [`GIT_REPOSITORY_URL=${repoUrl}`],
+            Tty: true,
+            HostConfig: {
+                AutoRemove: true,
+            },
+        });
+
+        await container.start();
+
+        const stream = await container.logs({
+            follow: true,
+            stdout: true,
+            stderr: true,
+        });
+
+        stream.on("data", (chunk)=>{
+            console.log(`[${containerName}] ${chunk.toString()}`);
+        });
+
+        res.status(200).json({
+            message: "Hosting Started",
+            containerId: container.id,
+            containerName,
+        });
+
+    }catch (error) {
+        console.error("Error deploying from GitHub:", error);
+        return res.status(500).json({error: "Failed to deploy from GitHub"});
+    }
+}
+
+export default {handleContainer, handleContainerStart, handleContainerStop, handleContainerDelete, handleDeployFromGitHub}
